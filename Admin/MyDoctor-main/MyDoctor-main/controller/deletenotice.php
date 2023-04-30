@@ -1,0 +1,16 @@
+<?php
+include '../model/db.php';
+
+    $id = $_GET["id"];
+    $con = getConnection();
+    $sql = "DELETE FROM `notice` WHERE `id` = $id";
+    $result = mysqli_query($con, $sql);
+
+    if ($result) {
+    $msg = "Notice with ID $id has been deleted.";
+    } else {
+    $msg = "Error deleting notice with ID $id: " . mysqli_error($con);
+    }
+    header("Location: ../model/noticedb.php?msg=" . urlencode($msg));
+    exit();
+    ?>
